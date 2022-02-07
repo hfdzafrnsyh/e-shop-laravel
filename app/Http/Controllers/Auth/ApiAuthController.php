@@ -58,7 +58,7 @@ class ApiAuthController extends Controller
 
         $accessToken = Auth::user()->createToken('authToken')->accessToken;
 
-        return response()->json(['user' => Auth::user() , 'accessToken' => $accessToken]);
+        return response()->json([ 'message' => "Login Successfull",'user' => Auth::user() , 'accessToken' => $accessToken]);
 
     }
 
