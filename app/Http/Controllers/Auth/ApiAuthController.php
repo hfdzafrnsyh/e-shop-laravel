@@ -25,7 +25,7 @@ class ApiAuthController extends Controller
 
 
         if($validator->fails()){
-            return response()->json($validator->errors(),202);
+            return response()->json(['status' => 'failed' , 'message' => $validator->errors()]);
         }
 
         $user = User::create([
@@ -41,7 +41,7 @@ class ApiAuthController extends Controller
 
         $accessToken = $user->createToken('authToken')->accessToken;
 
-        return response(['user' => $user , 'accessToken' => $accessToken]);
+        return response([ 'status' => 'success','user' => $user , 'accessToken' => $accessToken]);
     }
 
 
@@ -53,12 +53,12 @@ class ApiAuthController extends Controller
         ]);
 
         if(!Auth::attempt($user)){
-            return response()->json(['message' => 'Email or Password Error']);
+            return response()->json([ 'status' => 'failed' ,'message' => 'Email or Password Error']);
         }
 
         $accessToken = Auth::user()->createToken('authToken')->accessToken;
 
-        return response()->json([ 'message' => "Login Successfull",'user' => Auth::user() , 'accessToken' => $accessToken]);
+        return response()->json([ 'status' => 'success' ,'message' => "Login Successfull",'user' => Auth::user() , 'accessToken' => $accessToken]);
 
     }
 
