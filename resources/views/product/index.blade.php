@@ -7,9 +7,15 @@
         <div class="table-products">
     
 
-            <button type="button" class="btn btn-primary mt-3 mb-3" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#exampleModal">
                 Add Product
                 </button>
+
+                     <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#importModal">
+                        Import from Excel
+                </button>
+  
 
             <div class="session">
                 @if( session('success'))
@@ -179,6 +185,35 @@
     </div>
   </div>
 
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Import File</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/importproduct" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                  <label for="exampleFormControlFile1">Input File</label>
+                  <input type="file" name="file" class="form-control-file" required id="exampleFormControlFile1">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>
+              </form>
+        </div>
+     
+      </div>
+    </div>
+  </div>
 
 
 @endsection

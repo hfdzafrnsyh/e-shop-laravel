@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Imports\ProductImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -83,6 +85,14 @@ class ProductController extends Controller
     }
 
 
+    public function importProduct(Request $request){
+        $file = $request->file('file');
+        $nameFile = $file->getClientOriginalName();
+
+        $file->move('DataProduct' , $nameFile);
+        Excel::import(new ProductImport , public_path('/DataProduct/'.$nameFile));
+        return redirect('/products');
+    }
  
 }
 

@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth','Role:admin']], function(){
     Route::get('/products/{product}/edit' , [ProductController::class , 'edit']);
     Route::put('/products/{product}' , [ProductController::class , 'update']);
     Route::delete('/products/{product}' , [ProductController::class , 'delete']);
+    Route::post('/importproduct' , [ProductController::class , 'importProduct']);
 
     // order
     Route::get('/order' , [OrderProductController::class , 'index']);
