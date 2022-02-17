@@ -13,6 +13,9 @@
                 </div>
                 @endif
             </div>
+
+            <a href="/exportuser" class="btn btn-success btn-sm mb-3" target="_blank">Export Excel</a>
+            <a href="/importuser" class="btn btn-primary btn-sm mb-3" target="_blank">Import From Excel</a>
         
             <table class="table table-striped table-dark">
                     <thead>

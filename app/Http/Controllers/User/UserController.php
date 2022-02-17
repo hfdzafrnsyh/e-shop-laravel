@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Exports\UserExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\User;
 
 class UserController extends Controller
@@ -47,5 +49,10 @@ class UserController extends Controller
         }
 
         return redirect('/users')->with('success' , 'Update User Successfully');
+    }
+
+
+    public function userExport(){
+        return Excel::download(new userExport , 'users.xlsx');
     }
 }

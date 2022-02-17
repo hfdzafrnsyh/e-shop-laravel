@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth','Role:admin']], function(){
     Route::get('/users/{user}/edit' , [UserController::class , 'edit']);
     // Route::get('/users/{user}/profile' , [UserController::class , 'profile']);
     Route::put('/users/{user}' , [UserController::class , 'updateUser']);
+    Route::get('/exportuser' , [UserController::class , 'userExport']);
 
     // categories
     Route::get('/categories' , [CategoryController::class , 'index']);
